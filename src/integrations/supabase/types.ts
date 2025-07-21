@@ -14,7 +14,191 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          deposit_amount: number | null
+          description: string | null
+          estimated_cost: number
+          estimated_hours: number | null
+          id: string
+          notes: string | null
+          payment_id: string | null
+          payment_status: string | null
+          scheduled_date: string | null
+          scheduled_end_time: string | null
+          scheduled_start_time: string | null
+          service_id: string | null
+          service_name: string
+          status: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          deposit_amount?: number | null
+          description?: string | null
+          estimated_cost: number
+          estimated_hours?: number | null
+          id?: string
+          notes?: string | null
+          payment_id?: string | null
+          payment_status?: string | null
+          scheduled_date?: string | null
+          scheduled_end_time?: string | null
+          scheduled_start_time?: string | null
+          service_id?: string | null
+          service_name: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          deposit_amount?: number | null
+          description?: string | null
+          estimated_cost?: number
+          estimated_hours?: number | null
+          id?: string
+          notes?: string | null
+          payment_id?: string | null
+          payment_status?: string | null
+          scheduled_date?: string | null
+          scheduled_end_time?: string | null
+          scheduled_start_time?: string | null
+          service_id?: string | null
+          service_name?: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quote_requests: {
+        Row: {
+          created_at: string
+          description: string | null
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string | null
+          preferred_timeline: string | null
+          service_needed: string
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone?: string | null
+          preferred_timeline?: string | null
+          service_needed: string
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string | null
+          preferred_timeline?: string | null
+          service_needed?: string
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string | null
+          estimated_hours_max: number | null
+          estimated_hours_min: number | null
+          id: string
+          max_rate: number | null
+          min_rate: number | null
+          name: string
+          rate_type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          estimated_hours_max?: number | null
+          estimated_hours_min?: number | null
+          id?: string
+          max_rate?: number | null
+          min_rate?: number | null
+          name: string
+          rate_type: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          estimated_hours_max?: number | null
+          estimated_hours_min?: number | null
+          id?: string
+          max_rate?: number | null
+          min_rate?: number | null
+          name?: string
+          rate_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      time_slots: {
+        Row: {
+          created_at: string
+          date: string
+          end_time: string
+          id: string
+          is_available: boolean | null
+          start_time: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          end_time: string
+          id?: string
+          is_available?: boolean | null
+          start_time: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          end_time?: string
+          id?: string
+          is_available?: boolean | null
+          start_time?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

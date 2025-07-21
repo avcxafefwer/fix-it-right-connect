@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import QuoteRequestForm from "./QuoteRequestForm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -73,80 +74,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="card-elevated">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold flex items-center">
-                  <MessageSquare className="w-6 h-6 mr-3 text-primary" />
-                  Request a Quote
-                </CardTitle>
-                <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you within 24 hours with a detailed estimate.
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">First Name</label>
-                    <Input placeholder="John" className="transition-all duration-200 focus:shadow-material-md" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Last Name</label>
-                    <Input placeholder="Doe" className="transition-all duration-200 focus:shadow-material-md" />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Email</label>
-                    <Input type="email" placeholder="john@example.com" className="transition-all duration-200 focus:shadow-material-md" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Phone</label>
-                    <Input type="tel" placeholder="(555) 123-4567" className="transition-all duration-200 focus:shadow-material-md" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Service Needed</label>
-                  <select className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground transition-all duration-200 focus:shadow-material-md focus:outline-none focus:ring-2 focus:ring-ring">
-                    <option>Select a service...</option>
-                    <option>General Repairs</option>
-                    <option>Furniture Assembly</option>
-                    <option>TV Mounting</option>
-                    <option>Drywall Patching</option>
-                    <option>Painting</option>
-                    <option>Plumbing Repairs</option>
-                    <option>Light Electrical</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Project Description</label>
-                  <Textarea 
-                    placeholder="Please describe your project in detail..." 
-                    rows={4}
-                    className="transition-all duration-200 focus:shadow-material-md"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Preferred Timeline</label>
-                  <select className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground transition-all duration-200 focus:shadow-material-md focus:outline-none focus:ring-2 focus:ring-ring">
-                    <option>Select timeline...</option>
-                    <option>ASAP (Emergency)</option>
-                    <option>Within a week</option>
-                    <option>Within a month</option>
-                    <option>Flexible</option>
-                  </select>
-                </div>
-
-                <Button className="btn-primary w-full">
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Quote Request
-                </Button>
-              </CardContent>
-            </Card>
+            <QuoteRequestForm />
           </div>
 
           {/* Contact Info & Features */}
