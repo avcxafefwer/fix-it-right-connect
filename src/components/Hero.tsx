@@ -60,6 +60,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="btn-secondary text-lg px-8 py-4 shadow-material-lg hover:shadow-material-xl"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Book Now
             </Button>
@@ -67,6 +68,7 @@ const Hero = () => {
               variant="outline" 
               size="lg" 
               className="text-white border-white hover:bg-white hover:text-primary text-lg px-8 py-4"
+              onClick={() => window.open('tel:5551234567')}
             >
               <Phone className="w-5 h-5 mr-2" />
               Call (555) 123-4567

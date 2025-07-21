@@ -117,7 +117,11 @@ const Services = () => {
                   ))}
                 </ul>
 
-                <Button className="w-full mt-6 group/btn" variant="outline">
+                <Button 
+                  className="w-full mt-6 group/btn" 
+                  variant="outline"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Get Quote
                   <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
@@ -135,7 +139,11 @@ const Services = () => {
           <p className="text-lg md:text-xl text-white/90 mb-6 max-w-2xl mx-auto">
             We're available 24/7 for urgent repairs. Don't let a small problem become a big headache.
           </p>
-          <Button size="lg" className="btn-secondary shadow-material-md hover:shadow-material-lg">
+          <Button 
+            size="lg" 
+            className="btn-secondary shadow-material-md hover:shadow-material-lg"
+            onClick={() => window.open('tel:5551234567')}
+          >
             Call Emergency Line: (555) 123-4567
           </Button>
         </div>
