@@ -60,7 +60,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="btn-secondary text-lg px-8 py-4 shadow-material-lg hover:shadow-material-xl"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => window.location.href = '/signin?redirect=quote'}
             >
               Book Now
             </Button>

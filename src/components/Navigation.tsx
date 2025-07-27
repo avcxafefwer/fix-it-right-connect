@@ -45,13 +45,15 @@ const Navigation = () => {
               <Phone className="w-4 h-4" />
               <span>(555) 123-4567</span>
             </div>
-            <Button className="btn-primary">
-              Book Service
-            </Button>
+            <a href="/signin">
+              <Button className="btn-primary">
+                Sign In
+              </Button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2 ml-auto">
             <Button
               variant="ghost"
               size="sm"
@@ -86,9 +88,11 @@ const Navigation = () => {
                 <Phone className="w-4 h-4" />
                 <span>(555) 123-4567</span>
               </div>
-              <Button className="btn-primary w-full">
-                Book Service
-              </Button>
+              <a href="/signin">
+                <Button className="btn-primary w-full">
+                  Sign In
+                </Button>
+              </a>
             </div>
           </div>
         </div>
