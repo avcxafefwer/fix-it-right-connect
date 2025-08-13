@@ -271,10 +271,13 @@ export type Database = {
       }
       services: {
         Row: {
+          base_fee: number | null
           created_at: string | null
           description: string | null
+          hourly_rate: number | null
           id: string
           is_active: boolean | null
+          materials_markup_percent: number | null
           max_price: number | null
           min_price: number | null
           name: string
@@ -282,10 +285,13 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          base_fee?: number | null
           created_at?: string | null
           description?: string | null
+          hourly_rate?: number | null
           id?: string
           is_active?: boolean | null
+          materials_markup_percent?: number | null
           max_price?: number | null
           min_price?: number | null
           name: string
@@ -293,10 +299,13 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          base_fee?: number | null
           created_at?: string | null
           description?: string | null
+          hourly_rate?: number | null
           id?: string
           is_active?: boolean | null
+          materials_markup_percent?: number | null
           max_price?: number | null
           min_price?: number | null
           name?: string
