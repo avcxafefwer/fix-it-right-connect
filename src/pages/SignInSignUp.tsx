@@ -23,11 +23,10 @@ const SignInSignUp = () => {
         if (redirectTo === 'quote') {
           navigate('/quote');
         } else {
-          navigate('/');
+          navigate('/dashboard');
         }
       }
     };
-    
     checkAuth();
   }, [navigate, redirectTo]);
 
@@ -43,11 +42,16 @@ const SignInSignUp = () => {
         if (redirectTo === 'quote') {
           navigate('/quote');
         } else {
-          navigate('/');
+          navigate('/dashboard');
         }
       }
     } else {
-      const { error } = await supabase.auth.signUp({ email, password });
+      const redirectUrl = `${window.location.origin}/`;
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: { emailRedirectTo: redirectUrl }
+      });
       if (error) {
         toast({ title: "Sign Up Error", description: error.message, variant: "destructive" });
       } else {
