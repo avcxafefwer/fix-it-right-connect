@@ -9,6 +9,9 @@ import QuoteRequest from "./pages/QuoteRequest";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import { AuthProvider } from "@/hooks/useAuth";
+import ServicesManager from "./pages/ServicesManager";
+import WorkCalendar from "./pages/WorkCalendar";
+import Estimator from "./pages/Estimator";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +34,9 @@ const App = () => (
             />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/quote" element={<QuoteRequest />} />
+            <Route path="/admin/services" element={<ServicesManager />} />
+            <Route path="/calendar" element={<WorkCalendar />} />
+            <Route path="/estimate" element={<Estimator />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
