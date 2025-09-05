@@ -7,6 +7,11 @@ import Index from "./pages/Index";
 import SignInSignUp from "./pages/SignInSignUp";
 import QuoteRequest from "./pages/QuoteRequest";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from "@/hooks/useAuth";
+import ServicesManager from "./pages/ServicesManager";
+import WorkCalendar from "./pages/WorkCalendar";
+import Estimator from "./pages/Estimator";
 
 const queryClient = new QueryClient();
 
@@ -15,19 +20,28 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/signin" element={
-            <div className="min-h-screen flex items-center justify-center bg-background">
-              <SignInSignUp />
-            </div>
-          } />
-          <Route path="/quote" element={<QuoteRequest />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route
+              path="/signin"
+              element={
+                <div className="min-h-screen flex items-center justify-center bg-background">
+                  <SignInSignUp />
+                </div>
+              }
+            />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/quote" element={<QuoteRequest />} />
+            <Route path="/admin/services" element={<ServicesManager />} />
+            <Route path="/calendar" element={<WorkCalendar />} />
+            <Route path="/estimate" element={<Estimator />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

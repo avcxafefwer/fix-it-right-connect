@@ -10,75 +10,57 @@ export type Database = {
   // Allows to automatically instanciate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "12.2.12 (cd3cf9e)"
   }
   public: {
     Tables: {
       bookings: {
         Row: {
-          created_at: string
-          customer_email: string
-          customer_name: string
-          customer_phone: string | null
+          created_at: string | null
           deposit_amount: number | null
-          description: string | null
-          estimated_cost: number
-          estimated_hours: number | null
           id: string
           notes: string | null
-          payment_id: string | null
-          payment_status: string | null
-          scheduled_date: string | null
-          scheduled_end_time: string | null
-          scheduled_start_time: string | null
+          payment_method: Database["public"]["Enums"]["payment_method"] | null
+          payment_status: Database["public"]["Enums"]["payment_status"] | null
+          scheduled_date: string
+          scheduled_time: string
           service_id: string | null
-          service_name: string
-          status: string | null
-          updated_at: string
+          status: Database["public"]["Enums"]["booking_status"] | null
+          stripe_payment_intent_id: string | null
+          total_amount: number | null
+          updated_at: string | null
           user_id: string | null
         }
         Insert: {
-          created_at?: string
-          customer_email: string
-          customer_name: string
-          customer_phone?: string | null
+          created_at?: string | null
           deposit_amount?: number | null
-          description?: string | null
-          estimated_cost: number
-          estimated_hours?: number | null
           id?: string
           notes?: string | null
-          payment_id?: string | null
-          payment_status?: string | null
-          scheduled_date?: string | null
-          scheduled_end_time?: string | null
-          scheduled_start_time?: string | null
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          payment_status?: Database["public"]["Enums"]["payment_status"] | null
+          scheduled_date: string
+          scheduled_time: string
           service_id?: string | null
-          service_name: string
-          status?: string | null
-          updated_at?: string
+          status?: Database["public"]["Enums"]["booking_status"] | null
+          stripe_payment_intent_id?: string | null
+          total_amount?: number | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Update: {
-          created_at?: string
-          customer_email?: string
-          customer_name?: string
-          customer_phone?: string | null
+          created_at?: string | null
           deposit_amount?: number | null
-          description?: string | null
-          estimated_cost?: number
-          estimated_hours?: number | null
           id?: string
           notes?: string | null
-          payment_id?: string | null
-          payment_status?: string | null
-          scheduled_date?: string | null
-          scheduled_end_time?: string | null
-          scheduled_start_time?: string | null
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          payment_status?: Database["public"]["Enums"]["payment_status"] | null
+          scheduled_date?: string
+          scheduled_time?: string
           service_id?: string | null
-          service_name?: string
-          status?: string | null
-          updated_at?: string
+          status?: Database["public"]["Enums"]["booking_status"] | null
+          stripe_payment_intent_id?: string | null
+          total_amount?: number | null
+          updated_at?: string | null
           user_id?: string | null
         }
         Relationships: [
@@ -89,115 +71,280 @@ export type Database = {
             referencedRelation: "services"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "bookings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
         ]
       }
-      quote_requests: {
+      messages: {
         Row: {
-          created_at: string
-          description: string | null
-          email: string
-          first_name: string
+          attachment_url: string | null
+          booking_id: string | null
+          content: string
+          created_at: string | null
           id: string
-          last_name: string
-          phone: string | null
-          preferred_timeline: string | null
-          service_needed: string
-          status: string | null
-          updated_at: string
+          is_read: boolean | null
+          quote_id: string | null
+          recipient_id: string | null
+          sender_id: string | null
         }
         Insert: {
-          created_at?: string
-          description?: string | null
-          email: string
-          first_name: string
+          attachment_url?: string | null
+          booking_id?: string | null
+          content: string
+          created_at?: string | null
           id?: string
-          last_name: string
-          phone?: string | null
-          preferred_timeline?: string | null
-          service_needed: string
-          status?: string | null
-          updated_at?: string
+          is_read?: boolean | null
+          quote_id?: string | null
+          recipient_id?: string | null
+          sender_id?: string | null
         }
         Update: {
-          created_at?: string
-          description?: string | null
-          email?: string
-          first_name?: string
+          attachment_url?: string | null
+          booking_id?: string | null
+          content?: string
+          created_at?: string | null
           id?: string
-          last_name?: string
+          is_read?: boolean | null
+          quote_id?: string | null
+          recipient_id?: string | null
+          sender_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_quote_id_fkey"
+            columns: ["quote_id"]
+            isOneToOne: false
+            referencedRelation: "quotes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_recipient_id_fkey"
+            columns: ["recipient_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_sender_id_fkey"
+            columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      portfolio: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          service_id: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          service_id?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          service_id?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "portfolio_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string | null
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          role: Database["public"]["Enums"]["user_role"] | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string | null
+          email: string
+          full_name?: string | null
+          id: string
           phone?: string | null
-          preferred_timeline?: string | null
-          service_needed?: string
-          status?: string | null
-          updated_at?: string
+          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"] | null
+          updated_at?: string | null
         }
         Relationships: []
+      }
+      quotes: {
+        Row: {
+          address: string | null
+          admin_notes: string | null
+          created_at: string | null
+          customer_email: string
+          customer_name: string
+          customer_phone: string | null
+          estimated_amount: number | null
+          id: string
+          preferred_date: string | null
+          service_description: string
+          status: Database["public"]["Enums"]["quote_status"] | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          address?: string | null
+          admin_notes?: string | null
+          created_at?: string | null
+          customer_email: string
+          customer_name: string
+          customer_phone?: string | null
+          estimated_amount?: number | null
+          id?: string
+          preferred_date?: string | null
+          service_description: string
+          status?: Database["public"]["Enums"]["quote_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          address?: string | null
+          admin_notes?: string | null
+          created_at?: string | null
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string | null
+          estimated_amount?: number | null
+          id?: string
+          preferred_date?: string | null
+          service_description?: string
+          status?: Database["public"]["Enums"]["quote_status"] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quotes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       services: {
         Row: {
-          created_at: string
+          base_fee: number | null
+          created_at: string | null
           description: string | null
-          estimated_hours_max: number | null
-          estimated_hours_min: number | null
+          hourly_rate: number | null
           id: string
-          max_rate: number | null
-          min_rate: number | null
+          is_active: boolean | null
+          materials_markup_percent: number | null
+          max_price: number | null
+          min_price: number | null
           name: string
-          rate_type: string
-          updated_at: string
+          unit: string | null
+          updated_at: string | null
         }
         Insert: {
-          created_at?: string
+          base_fee?: number | null
+          created_at?: string | null
           description?: string | null
-          estimated_hours_max?: number | null
-          estimated_hours_min?: number | null
+          hourly_rate?: number | null
           id?: string
-          max_rate?: number | null
-          min_rate?: number | null
+          is_active?: boolean | null
+          materials_markup_percent?: number | null
+          max_price?: number | null
+          min_price?: number | null
           name: string
-          rate_type: string
-          updated_at?: string
+          unit?: string | null
+          updated_at?: string | null
         }
         Update: {
-          created_at?: string
+          base_fee?: number | null
+          created_at?: string | null
           description?: string | null
-          estimated_hours_max?: number | null
-          estimated_hours_min?: number | null
+          hourly_rate?: number | null
           id?: string
-          max_rate?: number | null
-          min_rate?: number | null
+          is_active?: boolean | null
+          materials_markup_percent?: number | null
+          max_price?: number | null
+          min_price?: number | null
           name?: string
-          rate_type?: string
-          updated_at?: string
+          unit?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
-      time_slots: {
+      site_settings: {
         Row: {
-          created_at: string
-          date: string
-          end_time: string
           id: string
-          is_available: boolean | null
-          start_time: string
+          key: string
+          updated_at: string | null
+          updated_by: string | null
+          value: Json | null
         }
         Insert: {
-          created_at?: string
-          date: string
-          end_time: string
           id?: string
-          is_available?: boolean | null
-          start_time: string
+          key: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value?: Json | null
         }
         Update: {
-          created_at?: string
-          date?: string
-          end_time?: string
           id?: string
-          is_available?: boolean | null
-          start_time?: string
+          key?: string
+          updated_at?: string | null
+          updated_by?: string | null
+          value?: Json | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "site_settings_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
@@ -207,7 +354,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      booking_status:
+        | "pending"
+        | "confirmed"
+        | "in_progress"
+        | "completed"
+        | "cancelled"
+      payment_method: "stripe" | "paypal" | "pay_later"
+      payment_status: "pending" | "paid" | "failed" | "partial"
+      quote_status: "pending" | "sent" | "accepted" | "rejected"
+      user_role: "customer" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -334,6 +490,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: [
+        "pending",
+        "confirmed",
+        "in_progress",
+        "completed",
+        "cancelled",
+      ],
+      payment_method: ["stripe", "paypal", "pay_later"],
+      payment_status: ["pending", "paid", "failed", "partial"],
+      quote_status: ["pending", "sent", "accepted", "rejected"],
+      user_role: ["customer", "admin"],
+    },
   },
 } as const
