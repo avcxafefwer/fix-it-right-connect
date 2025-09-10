@@ -9,7 +9,7 @@ import {
   Star
 } from "lucide-react";
 import EmailLink from "@/components/ui/email-link";
-import { PHONE, EMAIL } from "@/config/site";
+import { PHONE, EMAIL, SERVICE_AREA } from "@/config/site";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -133,8 +133,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
                 <div>
-                  <p className="text-background font-medium">Greater Metro Area</p>
-                  <p className="text-background/70 text-sm">Service Area</p>
+                  <p className="text-background font-medium">Service Area</p>
+                  <p className="text-background/70 text-sm">
+                    {SERVICE_AREA.slice(0, 8).join(', ')}{SERVICE_AREA.length > 8 ? ', and nearby towns' : ''}
+                  </p>
                 </div>
               </div>
             </div>

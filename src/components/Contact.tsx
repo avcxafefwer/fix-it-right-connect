@@ -14,7 +14,7 @@ import {
   CheckCircle
 } from "lucide-react";
 import EmailLink from "@/components/ui/email-link";
-import { PHONE, EMAIL } from "@/config/site";
+import { PHONE, EMAIL, SERVICE_AREA } from "@/config/site";
 
 const Contact = () => {
   const contactInfo = [
@@ -34,9 +34,9 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Service Area",
-      primary: "Greater Metro Area",
-      secondary: "Within 50 miles",
-      description: "We come to you!"
+      primary: "Northern New Jersey (within ~25 miles of 07075)",
+      secondary: SERVICE_AREA.join(', '),
+      description: "We come to you in these towns and nearby areas"
     },
     {
       icon: <Clock className="w-6 h-6" />,
