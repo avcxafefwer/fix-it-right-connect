@@ -44,61 +44,82 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Contact Info & CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+          {/* Right controls: phone (lg), language, mobile menu */}
+          <div className="flex items-center space-x-3">
+            <div className="hidden lg:flex items-center space-x-2 text-sm text-muted-foreground">
               <Phone className="w-4 h-4" />
               <span>{PHONE.display}</span>
             </div>
-            <LanguageSwitcher />
-            <a href="/signin">
-              <Button className="btn-primary">
-                Sign In
-              </Button>
-            </a>
-          </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </Button>
+            {/* language globe is compact and visible on all sizes */}
+            <div className="hidden sm:flex">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2"
+                aria-expanded={isOpen}
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div
-          className={cn(
-            "md:hidden transition-all duration-300 ease-in-out overflow-hidden",
-            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          )}
-        >
-          <div className="py-4 space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                {t(`nav_${item.name.toLowerCase()}`) || item.name}
-              </a>
-            ))}
-            <div className="pt-4 border-t border-border">
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-3">
-                <Phone className="w-4 h-4" />
-                <span>{PHONE.display}</span>
+        {/* Mobile slide-down panel (full width) */}
+        <div className={cn("md:hidden transition-transform duration-200 origin-top", isOpen ? "transform scale-y-100" : "transform scale-y-0") }>
+          <div className="bg-background/95 border-t border-border shadow-md p-4">
+            <div className="flex flex-col space-y-3">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t(`nav_${item.name.toLowerCase()}`) || item.name}
+                </a>
+              ))}
+
+              <div className="pt-2 border-t border-border">
+                <div className="py-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-2">
+                      <Phone className="w-4 h-4" />
+                      <div className="text-sm">{PHONE.display}</div>
+                    </div>
+                    <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
+                      Call
+                    </Button>
+                  </div>
+
+                  <div className="mt-2">
+                    <div className="text-sm text-muted-foreground mb-2">{t('settings') || 'Settings'}</div>
+                    <div className="flex items-center justify-between">
+                      <div className="text-sm">{t('language') || 'Language'}</div>
+                      <div>
+                        {/* show small language switcher in mobile panel */}
+                        <LanguageSwitcher />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3">
+                  <a href="/signin">
+                    <Button className="btn-primary w-full">
+                      Sign In
+                    </Button>
+                  </a>
+                </div>
               </div>
-              <a href="/signin">
-                <Button className="btn-primary w-full">
-                  Sign In
-                </Button>
-              </a>
             </div>
           </div>
         </div>
