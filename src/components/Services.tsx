@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { PHONE } from "@/config/site";
+import { formatCurrency } from '@/lib/utils';
 
 const Services = () => {
   const { t } = useI18n();
@@ -31,14 +32,29 @@ const Services = () => {
     { id: "kitchen", icon: <Utensils className="w-8 h-8" />, popular: true }
   ];
 
-  const services = serviceDefs.map((s) => ({
-    icon: s.icon,
-    title: t(`services.${s.id}.title`),
-    description: t(`services.${s.id}.description`),
-    rate: t(`services.${s.id}.rate`),
-    features: [0, 1, 2, 3].map((i) => t(`services.${s.id}.features.${i}`)),
-    popular: s.popular
-  }));
+  const { locale } = useI18n();
+
+  const localeMap: Record<string,string> = {
+    en: 'en-US',
+    es: 'es-ES',
+    pt: 'pt-PT',
+    pl: 'pl-PL'
+  };
+
+  const services = serviceDefs.map((s) => {
+    const rawRate = t(`services.${s.id}.rate`);
+    // try to format numeric values, otherwise keep translation
+    const formattedRate = formatCurrency(rawRate, localeMap[locale] || 'en-US', 'USD') || rawRate;
+
+    return {
+      icon: s.icon,
+      title: t(`services.${s.id}.title`),
+      description: t(`services.${s.id}.description`),
+      rate: formattedRate,
+      features: [0, 1, 2, 3].map((i) => t(`services.${s.id}.features.${i}`)),
+      popular: s.popular
+    };
+  });
 
   return (
     <section id="services" className="py-24 bg-surface">
