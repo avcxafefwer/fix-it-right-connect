@@ -15,3 +15,29 @@ export const SITE = {
   name: 'Fix it Right',
   domain: 'fix-it-right.us',
 };
+
+// Approximate service area: towns within ~25 miles of ZIP 07075 (Totowa, NJ)
+export const SERVICE_AREA = [
+  'Totowa',
+  'Paterson',
+  'Clifton',
+  'Wayne',
+  'Passaic',
+  'Fair Lawn',
+  'Paramus',
+  'Hackensack',
+  'Rutherford',
+  'East Rutherford',
+  'Bloomfield',
+  'Montclair',
+  'Nutley',
+  'Elmwood Park',
+  'Garfield',
+  'Little Falls',
+  'Secaucus',
+  'Hoboken',
+  'Jersey City',
+  'Kearny'
+  , 'Wood-Ridge', 'Hasbrouck Heights', 'Lyndhurst', 'Carlstadt', 'Moonachie', 'Ridgefield Park', 'Bogota'
+];
+

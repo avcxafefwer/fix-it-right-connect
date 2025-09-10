@@ -7,12 +7,15 @@ import {
   Paintbrush, 
   Zap, 
   Droplets, 
-  Square, 
+  Sofa,
+  Bath,
+  Utensils,
   Clock,
   DollarSign,
   ArrowRight
 } from "lucide-react";
 import { PHONE } from "@/config/site";
+import { SERVICE_AREA } from "@/config/site";
 
 const Services = () => {
   const services = [
@@ -25,7 +28,7 @@ const Services = () => {
       popular: false
     },
     {
-      icon: <Square className="w-8 h-8" />,
+  icon: <Sofa className="w-8 h-8" />,
       title: "Furniture Assembly",
   description: "Professional assembly of most furniture types (price varies by complexity)",
   rate: "$100-200 (flat)",
@@ -64,6 +67,23 @@ const Services = () => {
       features: ["Hole patching", "Crack repair", "Texture matching", "Paint touch-ups"],
       popular: false
     }
+    ,
+    {
+      icon: <Bath className="w-8 h-8" />,
+      title: "Full Bathroom Remodel",
+      description: "Complete bathroom renovations including fixtures, tile, plumbing, and finishes",
+      rate: "$8,000 - $25,000+",
+      features: ["Demolition & disposal", "New fixtures & fittings", "Tile & waterproofing", "Vanity & lighting installation"],
+      popular: true
+    },
+    {
+      icon: <Utensils className="w-8 h-8" />,
+      title: "Full Kitchen Remodel",
+      description: "Full kitchen remodels from cabinetry and countertops to plumbing and electrical",
+      rate: "$15,000 - $60,000+",
+      features: ["Cabinetry & hardware", "Countertops & backsplash", "Appliance installation", "Plumbing & electrical upgrades"],
+      popular: true
+    }
   ];
 
   return (
@@ -71,9 +91,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary px-4 py-2">
-            Our Services
-          </Badge>
+          <div className="flex items-center justify-center mb-4 gap-3">
+            <Badge className="bg-primary/10 text-primary px-4 py-2">Our Services</Badge>
+            <Badge className="bg-secondary/10 text-secondary px-4 py-2">Free estimates</Badge>
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Everything You Need
           </h2>
