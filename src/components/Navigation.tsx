@@ -73,56 +73,58 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {/* Mobile slide-down panel (full width) */}
-        <div className={cn("md:hidden transition-transform duration-200 origin-top", isOpen ? "transform scale-y-100" : "transform scale-y-0") }>
-          <div className="bg-background/95 border-t border-border shadow-md p-4">
-            <div className="flex flex-col space-y-3">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {t(`nav_${item.name.toLowerCase()}`) || item.name}
-                </a>
-              ))}
+        {/* Mobile slide-down panel (full width overlay) */}
+        {isOpen && (
+          <div className="md:hidden absolute left-0 right-0 top-full z-40">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-background/95 border-t border-border shadow-md p-4">
+                <div className="flex flex-col space-y-3">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {t(`nav_${item.name.toLowerCase()}`) || item.name}
+                    </a>
+                  ))}
 
-              <div className="pt-2 border-t border-border">
-                <div className="py-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center space-x-2">
-                      <Phone className="w-4 h-4" />
-                      <div className="text-sm">{PHONE.display}</div>
-                    </div>
-                    <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
-                      Call
-                    </Button>
-                  </div>
+                  <div className="pt-2 border-t border-border">
+                    <div className="py-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-2">
+                          <Phone className="w-4 h-4" />
+                          <div className="text-sm">{PHONE.display}</div>
+                        </div>
+                        <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
+                          Call
+                        </Button>
+                      </div>
 
-                  <div className="mt-2">
-                    <div className="text-sm text-muted-foreground mb-2">{t('settings') || 'Settings'}</div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm">{t('language') || 'Language'}</div>
-                      <div>
-                        {/* show small language switcher in mobile panel */}
-                        <LanguageSwitcher />
+                      <div className="mt-2">
+                        <div className="text-sm text-muted-foreground mb-2">{t('settings') || 'Settings'}</div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm">{t('language') || 'Language'}</div>
+                          <div>
+                            {/* show small language switcher in mobile panel */}
+                            <LanguageSwitcher />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                <div className="mt-3">
-                  <a href="/signin">
-                    <Button className="btn-primary w-full">
-                      Sign In
-                    </Button>
-                  </a>
+                    <div className="mt-3">
+                      <a href="/signin">
+                        <Button className="btn-primary w-full">Sign In</Button>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
         {/* Mobile bottom nav and floating contact CTA */}
         <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:hidden z-50 w-[92%]">
           <div className="bg-background/95 border border-border rounded-xl p-2 flex items-center justify-between shadow-md">
