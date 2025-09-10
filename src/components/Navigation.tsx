@@ -24,11 +24,11 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-shrink-0">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <span className="material-icons text-white text-lg">build</span>
             </div>
-            <span className="text-xl font-bold text-primary">Fix it Right</span>
+            <span className="text-xl font-bold text-primary whitespace-nowrap">Fix it Right</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -59,7 +59,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2 ml-auto">
+          <div className="md:hidden flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
