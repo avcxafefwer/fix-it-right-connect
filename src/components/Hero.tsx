@@ -3,16 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import { Star, CheckCircle, Phone } from "lucide-react";
 import heroImage from "@/assets/hero-handyman.jpg";
 import { PHONE } from "@/config/site";
+import { useI18n } from '@/i18n';
 
 const Hero = () => {
+  const { t } = useI18n();
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16">
+  <section id="home" className="relative min-h-screen flex items-center pt-16">
       {/* Background with overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="Professional handyman at work"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center md:object-left"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent"></div>
       </div>
@@ -23,21 +25,21 @@ const Hero = () => {
           {/* Badge */}
           <Badge className="mb-6 bg-secondary text-secondary-foreground px-4 py-2 text-sm font-medium">
             <Star className="w-4 h-4 mr-2 fill-current" />
-            Licensed & Insured • 5-Star Rated
+            {t('badge_trust')}
           </Badge>
 
           {/* Main heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            We Fix It
-            <span className="block text-secondary">Right</span>
+            {t('hero_main')}
+            <span className="block text-secondary">{t('hero_right')}</span>
             <span className="block text-2xl md:text-3xl lg:text-4xl font-normal text-white/90 mt-4">
-              Every Time
+              {t('hero_tag')}
             </span>
           </h1>
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-2xl">
-            Professional handyman services for your home and business. From minor repairs to major renovations, we've got you covered.
+            {t('hero_desc')}
           </p>
 
           {/* Trust indicators */}
@@ -63,7 +65,7 @@ const Hero = () => {
               className="btn-secondary text-lg px-8 py-4 shadow-material-lg hover:shadow-material-xl"
               onClick={() => window.location.href = '/signin?redirect=quote'}
             >
-              Book Now
+              {t('cta_book')}
             </Button>
             <Button 
               variant="outline" 
@@ -72,7 +74,7 @@ const Hero = () => {
               onClick={() => window.open(`tel:${PHONE.tel}`)}
             >
               <Phone className="w-5 h-5 mr-2" />
-              Call {PHONE.display}
+              {t('cta_call')} {PHONE.display}
             </Button>
           </div>
 
@@ -101,6 +103,12 @@ const Hero = () => {
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
+      </div>
+      {/* Floating call button for mobile */}
+      <div className="md:hidden fixed bottom-6 right-4 z-50">
+        <Button size="sm" className="rounded-full p-4 shadow-lg" onClick={() => window.open(`tel:${PHONE.tel}`)}>
+          <Phone className="w-5 h-5 text-white" />
+        </Button>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '@/i18n';
 import { PHONE } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +16,8 @@ const Navigation = () => {
     { name: "Portfolio", href: "#portfolio" },
     { name: "Contact", href: "#contact" },
   ];
+
+  const { t } = useI18n();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-material-sm">
@@ -35,7 +39,7 @@ const Navigation = () => {
                 href={item.href}
                 className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
               >
-                {item.name}
+                {t(`nav_${item.name.toLowerCase()}`) || item.name}
               </a>
             ))}
           </div>
@@ -46,6 +50,7 @@ const Navigation = () => {
               <Phone className="w-4 h-4" />
               <span>{PHONE.display}</span>
             </div>
+            <LanguageSwitcher />
             <a href="/signin">
               <Button className="btn-primary">
                 Sign In
@@ -81,7 +86,7 @@ const Navigation = () => {
                 className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                {t(`nav_${item.name.toLowerCase()}`) || item.name}
               </a>
             ))}
             <div className="pt-4 border-t border-border">
@@ -94,6 +99,21 @@ const Navigation = () => {
                   Sign In
                 </Button>
               </a>
+            </div>
+          </div>
+        </div>
+        {/* Mobile bottom nav and floating contact CTA */}
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:hidden z-50 w-[92%]">
+          <div className="bg-background/95 border border-border rounded-xl p-2 flex items-center justify-between shadow-md">
+            <div className="flex items-center space-x-3">
+              <a href="#home" className="text-sm text-foreground">{t('nav_home')}</a>
+              <a href="#services" className="text-sm text-foreground">{t('nav_services')}</a>
+              <a href="#contact" className="text-sm text-foreground">{t('nav_contact')}</a>
+            </div>
+            <div>
+              <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
+                <Phone className="w-4 h-4 mr-2" />{PHONE.display}
+              </Button>
             </div>
           </div>
         </div>
