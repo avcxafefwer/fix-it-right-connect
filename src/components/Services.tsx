@@ -19,48 +19,48 @@ const Services = () => {
     {
       icon: <Wrench className="w-8 h-8" />,
       title: "General Repairs",
-      description: "Quick fixes and maintenance for your home",
-      rate: "$80-120/hr",
+  description: "Quick fixes and maintenance for your home",
+  rate: "$65-95/hr",
       features: ["Door & window repairs", "Cabinet adjustments", "Hardware installation", "General maintenance"],
       popular: false
     },
     {
       icon: <Square className="w-8 h-8" />,
       title: "Furniture Assembly",
-      description: "Professional assembly of all furniture types",
-      rate: "$75 flat",
+  description: "Professional assembly of most furniture types (price varies by complexity)",
+  rate: "$100-200 (flat)",
       features: ["IKEA furniture", "Office furniture", "Outdoor furniture", "TV stands & entertainment centers"],
       popular: true
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Light Electrical",
-      description: "Safe electrical work for your home",
-      rate: "$80-150",
+  description: "Safe electrical work for your home",
+  rate: "$70-130/hr",
       features: ["Light fixture installation", "Outlet installation", "Switch replacements", "Ceiling fan installation"],
       popular: false
     },
     {
       icon: <Paintbrush className="w-8 h-8" />,
       title: "Painting",
-      description: "Interior and exterior painting services",
-      rate: "$300-600/room",
+  description: "Interior and exterior painting services",
+  rate: "$250-600/room",
       features: ["Interior painting", "Exterior touch-ups", "Trim painting", "Color consultation"],
       popular: false
     },
     {
       icon: <Droplets className="w-8 h-8" />,
       title: "Plumbing Repairs",
-      description: "Faucets, toilets, and minor plumbing fixes",
-      rate: "$100-200",
+  description: "Faucets, toilets, and minor plumbing fixes",
+  rate: "$90-200",
       features: ["Faucet replacement", "Toilet installation", "Leak repairs", "Pipe maintenance"],
       popular: false
     },
     {
       icon: <Hammer className="w-8 h-8" />,
       title: "Drywall & Patching",
-      description: "Professional drywall repair and finishing",
-      rate: "$150-300",
+  description: "Professional drywall repair and finishing",
+  rate: "$120-350",
       features: ["Hole patching", "Crack repair", "Texture matching", "Paint touch-ups"],
       popular: false
     }
@@ -129,6 +129,14 @@ const Services = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Pricing disclaimer */}
+        <div className="mb-8 text-sm text-muted-foreground max-w-3xl mx-auto text-center">
+          <p>
+            Rates shown are estimates for jobs in Northern New Jersey and intended as general guidance. Final price may vary based on scope, labor, travel, and permit requirements. Cost of materials is not included and will be quoted separately when applicable. Flat rates apply to straightforward jobs; complex or time-consuming work will be quoted after an on-site assessment.
+          </p>
+          <p className="mt-2">Prices effective Sep 9, 2025. Taxes and permit fees not included.</p>
         </div>
 
         {/* Emergency Service CTA */}
