@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import EmailLink from "@/components/ui/email-link";
 import { PHONE, EMAIL, SERVICE_AREA } from "@/config/site";
+import { useI18n } from '@/i18n';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -33,6 +34,8 @@ const Footer = () => {
   { name: "Book Service", href: "#book" },
   { name: "Emergency", href: `tel:${PHONE.tel}` }
   ];
+
+  const { t } = useI18n();
 
   return (
     <footer className="bg-foreground text-background">
@@ -71,7 +74,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Our Services</h3>
+            <h3 className="text-lg font-bold mb-6">{t('footer_services_title')}</h3>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
@@ -88,7 +91,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-6">{t('footer_quick_links')}</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -105,7 +108,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Contact Us</h3>
+            <h3 className="text-lg font-bold mb-6">{t('footer_contact_title')}</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
@@ -133,7 +136,7 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
                 <div>
-                  <p className="text-background font-medium">Service Area</p>
+                  <p className="text-background font-medium">{t('contact_service_area_title')}</p>
                   <p className="text-background/70 text-sm">
                     {SERVICE_AREA.slice(0, 8).join(', ')}{SERVICE_AREA.length > 8 ? ', and nearby towns' : ''}
                   </p>
@@ -154,7 +157,7 @@ const Footer = () => {
                 Licensed • Insured • Bonded
               </p>
             </div>
-            <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
+              <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
               <a href="#" className="text-background/80 hover:text-secondary transition-colors">
                 Privacy Policy
               </a>

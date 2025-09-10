@@ -15,35 +15,38 @@ import {
 } from "lucide-react";
 import EmailLink from "@/components/ui/email-link";
 import { PHONE, EMAIL, SERVICE_AREA } from "@/config/site";
+import { useI18n } from '@/i18n';
 
 const Contact = () => {
+  const { t } = useI18n();
+
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
-  title: "Phone",
+  title: t('contact_phone_title'),
   primary: PHONE.display,
   secondary: `Emergency: ${PHONE.display}`,
-      description: "Call us anytime for immediate assistance"
+    description: t('contact_phone_desc')
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: "Email",
+    title: t('contact_email_title'),
   primary: <EmailLink user={EMAIL.user} domain={EMAIL.domain} className="text-primary font-medium" />,
-      description: "Send us your project details"
+    description: t('contact_email_desc')
     },
     {
       icon: <MapPin className="w-6 h-6" />,
-      title: "Service Area",
-      primary: "Northern New Jersey (within ~25 miles of 07075)",
-      secondary: SERVICE_AREA.join(', '),
-      description: "We come to you in these towns and nearby areas"
+    title: t('contact_service_area_title'),
+    primary: "Northern New Jersey (within ~25 miles of 07075)",
+    secondary: SERVICE_AREA.join(', '),
+    description: t('contact_service_area_desc')
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Hours",
-      primary: "Mon-Sat: 9AM-5PM",
-      secondary: "Emergency: 24/7",
-      description: "Flexible scheduling available"
+    title: t('contact_hours_title'),
+    primary: "Mon-Sat: 9AM-5PM",
+    secondary: "Emergency: 24/7",
+    description: t('contact_hours_desc')
     }
   ];
 
@@ -62,13 +65,13 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-primary/10 text-primary px-4 py-2">
-            Get In Touch
+            {t('contact_badge')}
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Ready to Get Started?
+            {t('contact_heading')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Contact us today for a free estimate. We're here to help with all your home repair and improvement needs.
+            {t('contact_lead')}
           </p>
         </div>
 

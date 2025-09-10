@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { PHONE } from "@/config/site";
 import { SERVICE_AREA } from "@/config/site";
+import { useI18n } from '@/i18n';
 
 const Services = () => {
   const services = [
@@ -86,6 +87,8 @@ const Services = () => {
     }
   ];
 
+  const { t } = useI18n();
+
   return (
     <section id="services" className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,10 +99,10 @@ const Services = () => {
             <Badge className="bg-secondary/10 text-secondary px-4 py-2">Free estimates</Badge>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Everything You Need
+            {t('services_header')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From quick fixes to complete renovations, our skilled handymen handle it all with precision and care.
+            {t('services_sub')}
           </p>
         </div>
 
