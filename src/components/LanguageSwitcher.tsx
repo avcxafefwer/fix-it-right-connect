@@ -1,4 +1,3 @@
-import { Menu, Globe } from 'lucide-react';
 import { SUPPORTED_LOCALES, useI18n } from '@/i18n';
 
 const labels: Record<string, string> = { en: 'EN', es: 'ES', pt: 'PT', pl: 'PL' };
@@ -7,20 +6,19 @@ const LanguageSwitcher = () => {
   const { locale, setLocale } = useI18n();
 
   return (
-    <div className="flex items-center space-x-2">
-      <div className="hidden sm:flex items-center text-sm text-muted-foreground">{labels[locale]}</div>
-      <div className="flex items-center space-x-2">
+    <div className="flex items-center">
+      <label htmlFor="locale-select" className="sr-only">Language</label>
+      <select
+        id="locale-select"
+        value={locale}
+        onChange={(e) => setLocale(e.target.value as any)}
+        className="text-sm bg-transparent border border-transparent hover:border-muted px-2 py-1 rounded"
+        aria-label="Select language"
+      >
         {SUPPORTED_LOCALES.map((l) => (
-          <button
-            key={l}
-            onClick={() => setLocale(l)}
-            className={`text-xs px-2 py-1 rounded ${locale === l ? 'bg-primary text-white' : 'bg-transparent text-muted-foreground'}`}
-            aria-label={`Switch language to ${l}`}
-          >
-            {labels[l]}
-          </button>
+          <option key={l} value={l}>{labels[l]}</option>
         ))}
-      </div>
+      </select>
     </div>
   );
 };
