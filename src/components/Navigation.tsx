@@ -51,9 +51,16 @@ const Navigation = () => {
               <span>{PHONE.display}</span>
             </div>
 
-            {/* language globe is compact and visible on all sizes */}
+            {/* language globe is compact and visible on sm+ */}
             <div className="hidden sm:flex">
               <LanguageSwitcher />
+            </div>
+
+            {/* Sign In visible on medium+ screens */}
+            <div className="hidden md:inline-flex">
+              <a href="/signin">
+                <Button className="btn-primary">Sign In</Button>
+              </a>
             </div>
 
             {/* Mobile menu button */}
