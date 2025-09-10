@@ -12,6 +12,7 @@ import {
   DollarSign,
   ArrowRight
 } from "lucide-react";
+import { PHONE } from "@/config/site";
 
 const Services = () => {
   const services = [
@@ -142,9 +143,9 @@ const Services = () => {
           <Button 
             size="lg" 
             className="btn-secondary shadow-material-md hover:shadow-material-lg"
-            onClick={() => window.open('tel:5551234567')}
+            onClick={() => window.open(`tel:${PHONE.tel}`)}
           >
-            Call Emergency Line: (555) 123-4567
+            Call Emergency Line: {PHONE.display}
           </Button>
         </div>
       </div>

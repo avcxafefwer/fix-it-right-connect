@@ -8,6 +8,8 @@ import {
   Twitter,
   Star
 } from "lucide-react";
+import EmailLink from "@/components/ui/email-link";
+import { PHONE, EMAIL } from "@/config/site";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,12 +26,12 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
-    { name: "Book Service", href: "#book" },
-    { name: "Emergency", href: "tel:5551234567" }
+  { name: "About Us", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Portfolio", href: "#portfolio" },
+  { name: "Contact", href: "#contact" },
+  { name: "Book Service", href: "#book" },
+  { name: "Emergency", href: `tel:${PHONE.tel}` }
   ];
 
   return (
@@ -108,21 +110,23 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
                 <div>
-                  <p className="text-background font-medium">(555) 123-4567</p>
+                  <p className="text-background font-medium">{PHONE.display}</p>
                   <p className="text-background/70 text-sm">Main Line</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
                 <div>
-                  <p className="text-background font-medium">(555) 999-0000</p>
+                  <p className="text-background font-medium">{PHONE.display}</p>
                   <p className="text-background/70 text-sm">Emergency 24/7</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
                 <div>
-                  <p className="text-background font-medium">info@fixitright.com</p>
+                  <p className="text-background font-medium">
+                    <EmailLink user={EMAIL.user} domain={EMAIL.domain} className="text-background font-medium" />
+                  </p>
                   <p className="text-background/70 text-sm">General Inquiries</p>
                 </div>
               </div>

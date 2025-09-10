@@ -13,21 +13,22 @@ import {
   Send,
   CheckCircle
 } from "lucide-react";
+import EmailLink from "@/components/ui/email-link";
+import { PHONE, EMAIL } from "@/config/site";
 
 const Contact = () => {
   const contactInfo = [
     {
       icon: <Phone className="w-6 h-6" />,
-      title: "Phone",
-      primary: "(555) 123-4567",
-      secondary: "Emergency: (555) 999-0000",
+  title: "Phone",
+  primary: PHONE.display,
+  secondary: `Emergency: ${PHONE.display}`,
       description: "Call us anytime for immediate assistance"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      primary: "info@fixitright.com",
-      secondary: "quotes@fixitright.com",
+  primary: <EmailLink user={EMAIL.user} domain={EMAIL.domain} className="text-primary font-medium" />,
       description: "Send us your project details"
     },
     {
@@ -93,7 +94,9 @@ const Contact = () => {
                     <div className="flex-1">
                       <h4 className="font-medium text-foreground">{info.title}</h4>
                       <p className="text-sm font-medium text-primary">{info.primary}</p>
-                      <p className="text-sm text-muted-foreground">{info.secondary}</p>
+                      {info.secondary && (
+                        <p className="text-sm text-muted-foreground">{info.secondary}</p>
+                      )}
                       <p className="text-xs text-muted-foreground mt-1">{info.description}</p>
                     </div>
                   </div>

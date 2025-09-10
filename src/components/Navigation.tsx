@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import { PHONE } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const Navigation = () => {
@@ -43,7 +44,7 @@ const Navigation = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-muted-foreground">
               <Phone className="w-4 h-4" />
-              <span>(555) 123-4567</span>
+              <span>{PHONE.display}</span>
             </div>
             <a href="/signin">
               <Button className="btn-primary">
@@ -86,7 +87,7 @@ const Navigation = () => {
             <div className="pt-4 border-t border-border">
               <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-3">
                 <Phone className="w-4 h-4" />
-                <span>(555) 123-4567</span>
+                <span>{PHONE.display}</span>
               </div>
               <a href="/signin">
                 <Button className="btn-primary w-full">

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { PHONE } from "@/config/site";
 import { useToast } from "@/hooks/use-toast";
 
 const QuoteRequestForm = () => {
@@ -106,7 +107,7 @@ const QuoteRequestForm = () => {
               <label className="text-sm font-medium text-foreground">Phone</label>
               <Input 
                 type="tel" 
-                placeholder="(555) 123-4567" 
+                placeholder={PHONE.display} 
                 value={formData.phone}
                 onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
               />

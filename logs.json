@@ -1,0 +1,1 @@
+{"tag":"dap.receive","timestamp":1754186585745,"metadata":{"connectionId":1,"message":{"command":"saveDiagnosticLogs","arguments":{"toFile":"c:\\Users\\me\\fix-it-right-connect\\logs.json"},"type":"request","seq":8}},"level":0}

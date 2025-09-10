@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, CheckCircle, Phone } from "lucide-react";
 import heroImage from "@/assets/hero-handyman.jpg";
+import { PHONE } from "@/config/site";
 
 const Hero = () => {
   return (
@@ -67,11 +68,11 @@ const Hero = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-white border-white hover:bg-white hover:text-primary text-lg px-8 py-4"
-              onClick={() => window.open('tel:5551234567')}
+              className="text-white border-white bg-transparent hover:bg-white hover:text-primary text-lg px-8 py-4"
+              onClick={() => window.open(`tel:${PHONE.tel}`)}
             >
               <Phone className="w-5 h-5 mr-2" />
-              Call (555) 123-4567
+              Call {PHONE.display}
             </Button>
           </div>
 
