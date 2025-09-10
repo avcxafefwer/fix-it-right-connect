@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import LanguageSwitcher from './LanguageSwitcher';
 import { useI18n } from '@/i18n';
 import { PHONE } from "@/config/site";
@@ -28,7 +28,7 @@ const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <span className="material-icons text-white text-lg">build</span>
             </div>
-            <span className="text-xl font-bold text-primary whitespace-nowrap">Fix it Right</span>
+            <span className="text-lg font-bold text-primary whitespace-nowrap">Fix it Right</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -46,14 +46,20 @@ const Navigation = () => {
 
           {/* Right controls: phone (lg), language, mobile menu */}
           <div className="flex items-center space-x-3">
-            <div className="hidden lg:flex items-center space-x-2 text-sm text-muted-foreground">
-              <Phone className="w-4 h-4" />
-              <span>{PHONE.display}</span>
+            {/* phone removed from header to avoid clutter; phone remains inside mobile panel */}
+
+            {/* language globe is compact and visible on all sizes */}
+            <div>
+              <LanguageSwitcher />
             </div>
 
-            {/* language globe is compact and visible on sm+ */}
-            <div className="hidden sm:flex">
-              <LanguageSwitcher />
+            {/* Mobile icons: user (login) only */}
+            <div className="flex items-center md:hidden space-x-2">
+              <a href="/signin">
+                <Button variant="ghost" size="sm" aria-label="Sign in">
+                  <User className="w-5 h-5" />
+                </Button>
+              </a>
             </div>
 
             {/* Sign In visible on medium+ screens */}
@@ -86,22 +92,14 @@ const Navigation = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-background/95 border-t border-border shadow-md p-4">
                 <div className="flex flex-col space-y-3">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block text-foreground hover:text-primary transition-colors duration-200 font-medium py-2"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {t(`nav_${item.name.toLowerCase()}`) || item.name}
-                    </a>
-                  ))}
+
+                  {/* removed primary nav links from mobile panel per design — keep settings only */}
 
                   <div className="pt-2 border-t border-border">
                     <div className="py-3">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-4 h-4" />
+                          <span className="text-sm">📞</span>
                           <div className="text-sm">{PHONE.display}</div>
                         </div>
                         <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
@@ -132,21 +130,7 @@ const Navigation = () => {
             </div>
           </div>
         )}
-        {/* Mobile bottom nav and floating contact CTA */}
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:hidden z-50 w-[92%]">
-          <div className="bg-background/95 border border-border rounded-xl p-2 flex items-center justify-between shadow-md">
-            <div className="flex items-center space-x-3">
-              <a href="#home" className="text-sm text-foreground">{t('nav_home')}</a>
-              <a href="#services" className="text-sm text-foreground">{t('nav_services')}</a>
-              <a href="#contact" className="text-sm text-foreground">{t('nav_contact')}</a>
-            </div>
-            <div>
-              <Button size="sm" className="btn-secondary" onClick={() => window.open(`tel:${PHONE.tel}`)}>
-                <Phone className="w-4 h-4 mr-2" />{PHONE.display}
-              </Button>
-            </div>
-          </div>
-        </div>
+  {/* removed bottom mobile nav — header now contains compact controls */}
       </div>
     </nav>
   );
